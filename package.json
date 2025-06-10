@@ -1,7 +1,7 @@
 {
   "name": "sermoncompanionbackend",
   "version": "1.0.0",
-  "description": "",
+  "description": "This project provides a Node.js/Express API with MongoDB for the Sermon Companion application. It includes authentication, sermon CRUD operations and an endpoint to generate sermon outlines using the OpenAI API.",
   "main": "index.js",
   "scripts": {
     "start": "node server.js",
@@ -13,17 +13,28 @@
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
-    "express": "^4.18.2",
-    "mongoose": "^7.6.0",
-    "dotenv": "^16.3.1",
-    "cors": "^2.8.5",
-    "morgan": "^1.10.0",
     "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.21.2",
     "jsonwebtoken": "^9.0.2",
-    "openai": "^4.17.0",
-    "body-parser": "^1.20.2"
+    "mongoose": "^7.6.0",
+    "morgan": "^1.10.0",
+    "openai": "^4.104.0"
   },
   "devDependencies": {
     "nodemon": "^3.0.1"
-  }
+  },
+  "directories": {
+    "test": "tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sowahm808/SermonCompanionBackend.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sowahm808/SermonCompanionBackend/issues"
+  },
+  "homepage": "https://github.com/sowahm808/SermonCompanionBackend#readme"
 }
