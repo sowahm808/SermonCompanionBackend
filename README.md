@@ -2,7 +2,7 @@
 
 This project provides a Node.js/Express API with MongoDB for the Sermon Companion application. It includes authentication, sermon CRUD operations and an endpoint to generate sermon outlines using the OpenAI API.
 
-Additional middleware validates required environment variables and provides structured error responses for a more production-ready setup. A root `/` endpoint is also available for basic health checks.
+Additional middleware validates required environment variables and provides structured error responses for a more production-ready setup. Separate configuration files are loaded based on `NODE_ENV`. A root `/` endpoint is also available for basic health checks.
 
 ## Requirements
 - Node.js 18+
@@ -30,11 +30,14 @@ Additional middleware validates required environment variables and provides stru
 - `POST /api/auth/register` – register user
 - `POST /api/auth/login` – login user
 - `GET /api/sermons` – list sermons (requires JWT)
+  - Supports `page` and `limit` query parameters for pagination
 - `POST /api/sermons` – create sermon
 - `PUT /api/sermons/:id` – update sermon
 - `DELETE /api/sermons/:id` – delete sermon
 - `POST /api/sermons/generate` – generate sermon outline via OpenAI
 - `GET /api/user/me` – get current user profile (requires JWT)
 - `PUT /api/user/preferences` – update user preferences (requires JWT)
+
+All routes are protected by a simple rate limiter allowing 100 requests per 15-minute window per IP.
 
 This repository only includes server code. The frontend should consume these endpoints.

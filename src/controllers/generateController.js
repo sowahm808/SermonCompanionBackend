@@ -15,7 +15,11 @@ exports.generateOutline = async (req, res) => {
       model: 'gpt-3.5-turbo',
       messages: [{ role: 'user', content: prompt }],
     });
-    res.json({ outline: completion.data.choices[0].message.content.trim() });
+    const choice = completion.data.choices && completion.data.choices[0];
+    if (!choice) {
+      return res.status(500).json({ message: 'Failed to generate outline' });
+    }
+    res.json({ outline: choice.message.content.trim() });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

@@ -7,12 +7,13 @@ const {
   generateSermon,
 } = require('../controllers/sermonController');
 const auth = require('../middleware/auth');
+const asyncHandler = require('../middleware/asyncHandler');
 const router = express.Router();
 
-router.post('/', auth, createSermon);
-router.get('/', auth, getSermons);
-router.put('/:id', auth, updateSermon);
-router.delete('/:id', auth, deleteSermon);
-router.post('/generate', auth, generateSermon);
+router.post('/', auth, asyncHandler(createSermon));
+router.get('/', auth, asyncHandler(getSermons));
+router.put('/:id', auth, asyncHandler(updateSermon));
+router.delete('/:id', auth, asyncHandler(deleteSermon));
+router.post('/generate', auth, asyncHandler(generateSermon));
 
 module.exports = router;

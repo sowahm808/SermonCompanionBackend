@@ -12,4 +12,6 @@ const sermonSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
+sermonSchema.index({ user_id: 1, createdAt: -1 });
+
 module.exports = mongoose.model('Sermon', sermonSchema);
