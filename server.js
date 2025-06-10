@@ -22,6 +22,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/api/auth', require('./src/routes/auth'));
 app.use('/api/sermons', require('./src/routes/sermons'));
 app.use('/api/generate', require('./src/routes/generate'));
+app.use('/api/user', require('./src/routes/user'));
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

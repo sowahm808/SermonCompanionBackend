@@ -30,5 +30,7 @@ This project provides a Node.js/Express API with MongoDB for the Sermon Companio
 - `PUT /api/sermons/:id` – update sermon
 - `DELETE /api/sermons/:id` – delete sermon
 - `POST /api/sermons/generate` – generate sermon outline via OpenAI
+- `GET /api/user/me` – get current user profile (requires JWT)
+- `PUT /api/user/preferences` – update user preferences (requires JWT)
 
 This repository only includes server code. The frontend should consume these endpoints.
