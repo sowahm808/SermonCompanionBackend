@@ -1,10 +1,8 @@
 const Sermon = require('../models/Sermon');
-const { OpenAIApi, Configuration } = require('openai');
+const OpenAI = require('openai');
 const { paginate } = require('../models/pagination');
 
-const openai = new OpenAIApi(
-  new Configuration({ apiKey: process.env.OPENAI_API_KEY })
-);
+const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
 exports.createSermon = async (req, res) => {
   try {
@@ -61,11 +59,11 @@ exports.generateSermon = async (req, res) => {
         .json({ message: 'theme, length and translation are required' });
     }
     const prompt = `Generate a ${length} minute sermon outline about ${theme} with Bible verses from the ${translation} translation.`;
-    const completion = await openai.createChatCompletion({
+    const completion = await openai.chat.completions.create({
       model: 'gpt-3.5-turbo',
       messages: [{ role: 'user', content: prompt }],
     });
-    const choice = completion.data.choices && completion.data.choices[0];
+    const choice = completion.choices && completion.choices[0];
     if (!choice) {
       return res
         .status(500)
