@@ -4,10 +4,16 @@ const morgan = require('morgan');
 const dotenv = require('dotenv');
 const connectDB = require('./src/config/db');
 const validateEnv = require('./src/config/validateEnv');
+const rateLimiter = require('./src/middleware/rateLimiter');
 
 // Load environment variables
 dotenv.config();
-validateEnv();
+try {
+  validateEnv();
+} catch (err) {
+  console.error(err.message);
+  process.exit(1);
+}
 
 const app = express();
 
@@ -19,6 +25,7 @@ app.use(cors());
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(rateLimiter);
 
 app.get('/', (req, res) => {
   res.json({ message: 'API running' });
